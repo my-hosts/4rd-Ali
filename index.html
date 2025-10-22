@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>4rd</title>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link href='https://fonts.googleapis.com/css?family=Faster One' rel='stylesheet'>
+  <link rel="stylesheet" href="mouse_button.css">
+  <link rel="stylesheet" href="cursor.css">
+  <link rel="stylesheet" href="krilata_fraza_popup.css">
+  <link rel="stylesheet" href="index2.css">
+   
+  <style>
+  </style>
+</head>
+<body>
+  <img src="bg-cropped.png" alt="Overlay" class="background-overlay">
+
+  <h1>4rd Ali</h1>
+  
+  <audio autoplay loop>
+    <source src="download-made-with-Voicemod.mp3" type="audio/mpeg">
+  </audio>
+  <div class="vintage-bar" style="margin-top: -235px;">
+  <div class="vintage-fill" id="fillBarHunger" style="width: 0%;">Hunger</div>
+  </div>
+  <div class="vintage-bar" style="margin-top: -200px;">
+  <div class="vintage-fill" id="fillBarEnergy" style="width: 0%;">Energy</div>
+  </div>
+  <div class="vintage-bar" style="margin-top: -165px;">
+  <div class="vintage-fill" id="fillBarMood" style="width: 0%;">Себеразвитие</div>
+  </div>
+  <div class="vintage-bar" style="margin-top: -130px;">
+  <div class="vintage-fill" id="fillBarSeberazvitie" style="width: 0%;">Mood</div>
+  </div>
+  
+  <img id="mouse-gif" src="rat-eats-mm-rat.gif" alt="Ali as a mouse" class="a">
+
+  <div class="container">
+    <button class="pos-1" onclick="increaseBarHunger()">
+      <div class="button-outer"><div class="button-inner"><span></span></div></div>
+    </button>
+
+    <button class="pos-2" onclick="increaseBarEnergy()" onclick="decreaseBarHunger()">
+      <div class="button-outer"><div class="button-inner"><span></span></div></div>
+    </button>
+
+    <button class="pos-3" onclick="increaseBarMood()">
+      <div class="button-outer"><div class="button-inner"><span></span></div></div>
+    </button>
+
+    <button class="pos-4" onclick="increaseBarSeberazvitie()">
+      <div class="button-outer"><div class="button-inner"><span></span></div></div>
+    </button>
+  </div>
+
+  <button class="mouse-button" onclick="krilataFrazaPopUp()">
+    <div class="wrap">
+
+    </div>
+  </button>
+  <div class="bubble" id="myPopup">aaaa</div>
+  <script src="script.js"></script>
+</body>
+</html>

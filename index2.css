@@ -333,13 +333,15 @@ html, body{
     padding: env(safe-area-inset);
   }
   .a {
-    width: 60vw;     /* smaller image */
+    max-width: 80vw;     /* smaller image */
+    scale: 80%;
   }
 
   .container {
+    max-width: 95vw;
     grid-template-columns: repeat(2, 1fr);
     gap: 4vw;
-    margin-top: 4vh;
+    margin-top: 6vh;
   }
 
   h1 {

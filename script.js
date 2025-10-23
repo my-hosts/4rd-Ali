@@ -42,29 +42,29 @@ function changeGif(state) {
   // 🖼️ 2. Change GIF based on action
   switch (state) {
     case "eat":
-      gifEl.src = "eating.gif";
-      gifTimeouts.push(setTimeout(() => gifEl.src = "rat-eats-mm-rat.gif", 3000));
+      gifEl.src = "eat_mouse.gif";
+      gifTimeouts.push(setTimeout(() => gifEl.src = "bigger_default.gif", 4000));
       break;
 
     case "sleep":
       
       playGif("sleeping_mouse.gif");
       gifTimeouts.push(setTimeout(() => gifEl.src = "sleeping_mouse.jpg", 6000));
-      gifTimeouts.push(setTimeout(() => gifEl.src = "rat-eats-mm-rat.gif", 12000));
+      gifTimeouts.push(setTimeout(() => gifEl.src = "bigger_default.gif", 12000));
       break;
 
     case "work":
       gifEl.src = "rat-work.gif";
-      gifTimeouts.push(setTimeout(() => gifEl.src = "rat-eats-mm-rat.gif", 3000));
+      gifTimeouts.push(setTimeout(() => gifEl.src = "bigger_default.gif", 3000));
       break;
 
     case "slay":
-      gifEl.src = "rat-slay.gif";
-      gifTimeouts.push(setTimeout(() => gifEl.src = "rat-eats-mm-rat.gif", 3000));
+      gifEl.src = "slay_mouse.gif";
+      gifTimeouts.push(setTimeout(() => gifEl.src = "bigger_default.gif", 3000));
       break;
 
     default:
-      gifEl.src = "rat-eats-mm-rat.gif";
+      gifEl.src = "bigger_default.gif";
   }
 }
 

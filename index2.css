@@ -328,6 +328,9 @@ html, body{
     /*display: none;*/
     width: 100vw;
     height: 100vh;
+    inset: 0;
+    object-fit: contain;
+    padding: env(safe-area-inset);
   }
   .a {
     width: 60vw;     /* smaller image */

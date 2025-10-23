@@ -1,125 +1,143 @@
-/*let counterHunger = 0;
-let counterEnergy = 0;
-let counterMood = 0;
-let counterSeberazvitie = 0;*/
+// === DOM ELEMENT ===
 
-var gif; //0= default; 1- eating; 2- sleeping; 3- working; 4- slaying
+// === SELECT ELEMENTS ===
+const gifEl = document.getElementById("mouse-gif");
 
-const gif = document.getElementById("mouse-gif");
+// === COUNTERS ===
+const counters = {
+  hunger: 50,
+  energy: 50,
+  mood: 50,
+  seberazvitie: 50,
+};
 
-function change_gif(gif){
-  if (gif==2){
-    <img src="6w74GCnI.gif" //change to sleeping gif
+// === TIMERS ===
+const timers = {
+  hunger: null,
+  energy: null,
+  mood: null,
+  seberazvitie: null,
+};
+
+// === CHANGE GIF FUNCTION ===
+// === GLOBAL VARIABLE to track active timeouts ===
+let gifTimeouts = [];
+/**
+ * Safely increase or decrease a counter within min/max bounds
+ * @param {string} key - The counter property, e.g., "hunger"
+ * @param {number} delta - Positive to increase, negative to decrease
+ * @param {number} min - Minimum allowed value (default 0)
+ * @param {number} max - Maximum allowed value (default 100)
+ */
+function changeCounter(key, delta, min = 0, max = 100) {
+  counters[key] = Math.min(max, Math.max(min, counters[key] + delta));
+}
+
+// === CHANGE GIF FUNCTION ===
+function changeGif(state) {
+  // 🧹 1. Clear any old timeouts before changing GIF
+  gifTimeouts.forEach(timeout => clearTimeout(timeout));
+  gifTimeouts = [];
+
+  // 🖼️ 2. Change GIF based on action
+  switch (state) {
+    case "eat":
+      gifEl.src = "eating.gif";
+      gifTimeouts.push(setTimeout(() => gifEl.src = "rat-eats-mm-rat.gif", 3000));
+      break;
+
+    case "sleep":
+      
+      playGif("sleeping_mouse.gif");
+      gifTimeouts.push(setTimeout(() => gifEl.src = "sleeping_mouse.jpg", 6000));
+      gifTimeouts.push(setTimeout(() => gifEl.src = "rat-eats-mm-rat.gif", 12000));
+      break;
+
+    case "work":
+      gifEl.src = "rat-work.gif";
+      gifTimeouts.push(setTimeout(() => gifEl.src = "rat-eats-mm-rat.gif", 3000));
+      break;
+
+    case "slay":
+      gifEl.src = "rat-slay.gif";
+      gifTimeouts.push(setTimeout(() => gifEl.src = "rat-eats-mm-rat.gif", 3000));
+      break;
+
+    default:
+      gifEl.src = "rat-eats-mm-rat.gif";
   }
 }
 
-const counter = {
-  counterHunger = 0;
-  counterEnergy = 0;
-  counterMood = 0;
-  counterSeberazvitie = 0;
+function playGif(src) {
+  gifEl.src = `${src}?v=${Date.now()}`;
 }
 
-let timer1 = null;
-let timer2 = null;
-let timer3 = null;
-let timer4 = null;
-
-
-function eat(){
-  counterHunger += 30;
-  counterEnergy += 10;
-  counterMood += 5;
+// === ACTION FUNCTIONS ===
+function eat() {
+  changeCounter("hunger", 30);      // +30 Hunger
+  changeCounter("energy", 10);      // +10 Energy
+  changeCounter("mood", 5);         // +5 Mood
+  changeGif("eat");
+  updateBars();
 }
 
-function sleep(){
-  counterHunger -+ 10;
-  counterEnergy += 30;
+function sleep() {
+  changeCounter("hunger", -10);     // -10 Hunger
+  changeCounter("energy", 30);      // +30 Energy
+  changeGif("sleep");
+  updateBars();
 }
 
-function work(){
-  counterHunger -= 10;
-  counterEnergy -= 20;
-  counterSeberazvitie += 30;
-  counterMood -= 5;
+function work() {
+  changeCounter("hunger", -10);     // -10 Hunger
+  changeCounter("energy", -20);     // -20 Energy
+  changeCounter("seberazvitie", 30); // +30 Self-development
+  changeCounter("mood", -5);        // -5 Mood
+  changeGif("work");
+  updateBars();
 }
 
-function slay(){
-  counterMood += 30;
-  counterSeberazvitie += 20;
+function slay() {
+  changeCounter("mood", 30);        // +30 Mood
+  changeCounter("seberazvitie", 20); // +20 Self-development
+  changeGif("slay");
+  updateBars();
 }
 
-function updateBar() {
-  const bar1 = document.getElementById("fillBarHunger");
-  bar1.style.width = counterHunger + "%";   // set the width dynamically
-  //bar.textContent = counter + "%";   // update text inside
-  const bar2 = document.getElementById("fillBarEnergy");
-  bar2.style.width = counterEnergy + "%";   // set the width dynamically
-  //bar.textContent = counter + "%";   // update text inside
-  const bar3 = document.getElementById("fillBarMood");
-  bar3.style.width = counterMood + "%";   // set the width dynamically
-  //bar.textContent = counter + "%";   // update text inside
-  const bar4 = document.getElementById("fillBarSeberazvitie");
-  bar4.style.width = counterSeberazvitie + "%";   // set the width dynamically
-  //bar.textContent = counter + "%";   // update text inside
+
+// === UPDATE PROGRESS BARS ===
+function updateBars() {
+  document.getElementById("fillBarHunger").style.width = counters.hunger + "%";
+  document.getElementById("fillBarEnergy").style.width = counters.energy + "%";
+  document.getElementById("fillBarMood").style.width = counters.mood + "%";
+  document.getElementById("fillBarSeberazvitie").style.width = counters.seberazvitie + "%";
 }
 
-function startDecreasingBars(counter, updateBar) {
-  Object.keys(counter).forEach()
-  if (timer1 || timer2 || timer3 || timer4) return; // don’t start multiple timers
-  timer1 = setInterval(() => {
+// === DECREASE EACH BAR INDEPENDENTLY ===
+function startDecreasingBars() {
+  const startTimer = (key, interval) => {
+    if (timers[key]) return; // avoid duplicate timers
 
-    if (counter > 0) {
-      counter -= 10; // decrease slowly
-      updateBar();
-    } else {
-      clearInterval(timer1); // stop when reaches 0
-      timer1 = null;
-    }
-  }, 5000); // decrease every 3 seconds
+    timers[key] = setInterval(() => {
+      if (counters[key] > 0) {
+        counters[key] -= 5;
+        if (counters[key] < 0) counters[key] = 0;
+        updateBars();
+      }
+    }, interval);
+  };
+
+  // Each bar decreases at its own pace (you can adjust speeds)
+  startTimer("hunger", 1000);
+  startTimer("energy", 1000);
+  startTimer("mood", 1000);
+  startTimer("seberazvitie", 1000);
 }
-function startDecreasingEnergy() {
 
-  if (timer2) return; // don’t start multiple timers
-  timer2 = setInterval(() => {
+// === START EVERYTHING ===
+updateBars();
+startDecreasingBars();
 
-    if (counterEnergy > 0) {
-      counterEnergy -= 10; // decrease slowly
-      updateBar();
-    } else {
-      clearInterval(timer2); // stop when reaches 0
-      timer2 = null;
-    }
-  }, 5000); // decrease every 3 seconds
-}
-function startDecreasingMood() {
-
-  if (timer3) return; // don’t start multiple timers
-  timer3 = setInterval(() => {
-
-    if (counterMood > 0) {
-      counterMood -= 10; // decrease slowly
-      updateBar();
-    } else {
-      clearInterval(timer3); // stop when reaches 0
-      timer3 = null;
-    }
-  }, 5000); // decrease every 3 seconds
-}
-function startDecreasingSeberazvitie() {
-
-  if (timer4) return; // don’t start multiple timers
-  timer4 = setInterval(() => {
-
-    if (counterSeberazvitie > 0) {
-      counterSeberazvitie -= 10; // decrease slowly
-      updateBar();
-    } else {
-      clearInterval(timer4); // stop when reaches 0
-      timer4 = null;
-    }
-  }, 5000); // decrease every 3 seconds
-}
 
 
 function krilataFrazaPopUp(){

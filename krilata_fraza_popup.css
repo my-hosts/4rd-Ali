@@ -5,13 +5,13 @@
     color: #FFFFFF;
     font-family: Arial;
     font-size: 20px;
-    line-height: 120px;
+    line-height: 30px;
     box-shadow: 5px 5px 2px 0px #A3A3A3;
     text-align: center;
     width: 250px;
     height: 120px;
     border-radius: 10px;
-    padding: 0px;
+    padding: 5px;
     display: none;
     z-index: 999;
 

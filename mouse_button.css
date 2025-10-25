@@ -7,11 +7,11 @@
   cursor: grab;
   border: 0;
   position: absolute;
-  top: 50%;
+  top: 70%;
   left: 50%;
   /*transform: translate(-50%, -50%); /* <-- THIS centers it perfectly */
 
-  margin-top: 125px; /* you can adjust this for vertical offset */
+  margin-top:0; /* 8em;/*125px; /* you can adjust this for vertical offset */
   margin-left: -45px;
   border-radius: var(--radius);
   border-bottom-left-radius: 180px;
@@ -109,3 +109,9 @@
     0 1rem 1rem -0.6rem rgba(0, 0, 0, 0.8);
 }
 
+@media (max-width: 600px) {
+  .mouse-button{
+    scale: 0.5;
+    margin-top: -0.9em;
+  }
+}

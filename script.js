@@ -60,7 +60,7 @@ function changeGif(state) {
 
     case "slay":
       gifEl.src = "slay_mouse.gif";
-      gifTimeouts.push(setTimeout(() => gifEl.src = "bigger_default.gif", 3000));
+      gifTimeouts.push(setTimeout(() => gifEl.src = "bigger_default.gif", 8000));
       break;
 
     default:
@@ -148,3 +148,16 @@ function krilataFrazaPopUp(){
 }
 
 window.krilataFrazaPopUp = krilataFrazaPopUp;
+
+function play_audio(){
+  const audio = document.getElementById("bg-audio");
+  audio.play().then(() => {
+    // Hide the button once audio starts
+    document.querySelector(".audio-button").style.display = "none";
+    document.querySelector(".audio-overlay").style.display = "none";
+    document.querySelector(".switch").style.display = "none";
+  }).catch(err => {
+    console.log("Autoplay blocked until user interaction:", err);
+  });
+
+}

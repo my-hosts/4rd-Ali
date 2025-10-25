@@ -120,7 +120,7 @@ function startDecreasingBars() {
 
     timers[key] = setInterval(() => {
       if (counters[key] > 0) {
-        counters[key] -= 5;
+        counters[key] -= 1;
         if (counters[key] < 0) counters[key] = 0;
         updateBars();
       }
@@ -151,11 +151,13 @@ window.krilataFrazaPopUp = krilataFrazaPopUp;
 
 function play_audio(){
   const audio = document.getElementById("bg-audio");
+  audio.loop = true;
   audio.play().then(() => {
     // Hide the button once audio starts
     document.querySelector(".audio-button").style.display = "none";
     document.querySelector(".audio-overlay").style.display = "none";
     document.querySelector(".switch").style.display = "none";
+    document.querySelector(".button").style.display = "none";
   }).catch(err => {
     console.log("Autoplay blocked until user interaction:", err);
   });

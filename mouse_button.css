@@ -11,7 +11,7 @@
   left: 50%;
   /*transform: translate(-50%, -50%); /* <-- THIS centers it perfectly */
 
-  margin-top: 160px; /* you can adjust this for vertical offset */
+  margin-top: 125px; /* you can adjust this for vertical offset */
   margin-left: -45px;
   border-radius: var(--radius);
   border-bottom-left-radius: 180px;

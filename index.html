@@ -7,39 +7,58 @@
   <title>4rd</title>
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link href='https://fonts.googleapis.com/css?family=Faster One' rel='stylesheet'>
+  <link href='https://fonts.googleapis.com/css?family=Hanalei' rel='stylesheet'>
   <link rel="stylesheet" href="mouse_button.css">
   <link rel="stylesheet" href="cursor.css">
   <link rel="stylesheet" href="krilata_fraza_popup.css">
   <link rel="stylesheet" href="index2.css">
+  <link rel="stylesheet" href="switch.css">
    
   <style>
   </style>
 </head>
 <body>
+  <div class="audio-overlay"></div>
+  <!-- From Uiverse.io by Nawsome --> 
+<label class="switch">
+  <input type="checkbox" checked="checked">
+  <div class="button" onclick="play_audio()">
+    <div class="light"></div>
+    <div class="dots"></div>
+    <div class="characters"></div>
+    <div class="shine"></div>
+    <div class="shadow"></div>
+  </div>
+</label>
+
+  <div class="audio-button" onclick="play_audio()"> </div>
   <div class="game-stage">
   <img src="bg-cropped.png" alt="Overlay" class="background-overlay">
 
+
   <h1>4rd Ali</h1>
   
-  <audio autoplay loop>
+  <audio id="bg-audio" preload="auto">
     <source src="download-made-with-Voicemod.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
   </audio>
-  <div class="vintage-bar" style="margin-top: -235px;">
+  <div class="vintage-bar" style="margin-top: -240px;">
   <div class="vintage-fill" id="fillBarHunger" style="width: 0%;">Hunger</div>
   </div>
-  <div class="vintage-bar" style="margin-top: -200px;">
+  <div class="vintage-bar" style="margin-top: -212px;">
   <div class="vintage-fill" id="fillBarEnergy" style="width: 0%;">Energy</div>
   </div>
-  <div class="vintage-bar" style="margin-top: -165px;">
+  <div class="vintage-bar" style="margin-top: -183px;">
   <div class="vintage-fill" id="fillBarMood" style="width: 0%;">Mood</div>
   </div>
-  <div class="vintage-bar" style="margin-top: -130px;">
+  <div class="vintage-bar" style="margin-top: -155px;">
   <div class="vintage-fill" id="fillBarSeberazvitie" style="width: 0%;">Себеразвитие</div>
   </div>
   
 
-
+  
   <img id="mouse-gif" src="bigger_default.gif" alt="Ali as a mouse" class="a">
+  <div class="a"></div>
 
   <div class="container">
     <button class="pos-1" onclick="eat()">

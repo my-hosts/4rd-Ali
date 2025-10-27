@@ -2,20 +2,21 @@
 .mouse-button {
   --white: #ffe7ff;
   --bg: #080808;
-  --radius: 100px;
+  --radius: 6rem;/*--radius: 100px;*/
   outline: none;
   cursor: grab;
   border: 0;
   position: absolute;
-  top: 70%;
+  top: 70.5%;
   left: 50%;
-  /*transform: translate(-50%, -50%); /* <-- THIS centers it perfectly */
+  transform: translateX(-50%); /* <-- THIS centers it perfectly */
+  z-index: 97;
 
   margin-top:0; /* 8em;/*125px; /* you can adjust this for vertical offset */
-  margin-left: -45px;
+   /*margin-left: -45px;*/
   border-radius: var(--radius);
-  border-bottom-left-radius: 180px;
-  border-bottom-right-radius: 180px;
+  border-bottom-left-radius: 12em; /*border-bottom-left-radius: 180px;*/
+  border-bottom-right-radius: 12em; /*border-bottom-right-radius: 180px;*/
   background-color: var(--bg);
   transition: all 0.2s ease;
   box-shadow:
@@ -30,7 +31,7 @@
   font-size: 15px;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.7);
-  padding: 32px 45px;
+  padding: clamp(16px, 3vw, 32px) clamp(24px, 4vw, 45px);; /*padding: 32px 45px;*/
   border-radius: inherit;
   position: relative;
   overflow: hidden;
@@ -107,11 +108,4 @@
     inset 0 -0.4rem 0.9rem rgba(255, 255, 255, 0.4),
     0 3rem 3rem rgba(0, 0, 0, 0.3),
     0 1rem 1rem -0.6rem rgba(0, 0, 0, 0.8);
-}
-
-@media (max-width: 600px) {
-  .mouse-button{
-    scale: 0.5;
-    margin-top: -0.9em;
-  }
 }

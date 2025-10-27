@@ -1,111 +1,119 @@
-/* From Uiverse.io by marcelodolza */ 
+/* From Uiverse.io by marcelodolza — Blue-Grey Overhaul */
 .mouse-button {
-  --white: #ffe7ff;
-  --bg: #080808;
-  --radius: 6rem;/*--radius: 100px;*/
+  --white: #e5e8f0; /* soft, cool white */
+  --bg: #0c0d13; /* deep cool grey-blue */
+  --radius: 6rem;
   outline: none;
   cursor: grab;
   border: 0;
   position: absolute;
   top: 70.5%;
   left: 50%;
-  transform: translateX(-50%); /* <-- THIS centers it perfectly */
+  transform: translateX(-50%);
   z-index: 97;
-
-  margin-top:0; /* 8em;/*125px; /* you can adjust this for vertical offset */
-   /*margin-left: -45px;*/
+  margin-top: 0;
   border-radius: var(--radius);
-  border-bottom-left-radius: 12em; /*border-bottom-left-radius: 180px;*/
-  border-bottom-right-radius: 12em; /*border-bottom-right-radius: 180px;*/
+  border-bottom-left-radius: 12em;
+  border-bottom-right-radius: 12em;
   background-color: var(--bg);
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
   box-shadow:
-    inset 0 0.3rem 0.9rem rgba(255, 255, 255, 0.3),
+    inset 0 0.3rem 0.9rem rgba(255, 255, 255, 0.15),
     inset 0 -0.1rem 0.3rem rgba(0, 0, 0, 0.7),
-    inset 0 -0.4rem 0.9rem rgba(255, 255, 255, 0.5),
-    0 3rem 3rem rgba(0, 0, 0, 0.3),
+    inset 0 -0.4rem 0.9rem rgba(194, 189, 201, 0.4), /* blue overtone glow */
+    0 3rem 3rem rgba(0, 0, 0, 0.35),
     0 1rem 1rem -0.6rem rgba(0, 0, 0, 0.8);
 }
 
 .mouse-button .wrap {
   font-size: 15px;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.7);
-  padding: clamp(16px, 3vw, 32px) clamp(24px, 4vw, 45px);; /*padding: 32px 45px;*/
+  color: rgba(194, 189, 201, 0.85); /* soft blue-grey text */
+  padding: clamp(16px, 3vw, 32px) clamp(24px, 4vw, 45px);
   border-radius: inherit;
   position: relative;
   overflow: hidden;
 }
-.mouse-button .wrap p span:nth-child(2) {
-  display: none;
-}
-.mouse-button:hover .wrap p span:nth-child(1) {
-  display: none;
-}
-.mouse-button:hover .wrap p span:nth-child(2) {
-  display: inline-block;
-}
+
+/* Text toggle behavior */
+.mouse-button .wrap p span:nth-child(2) { display: none; }
+.mouse-button:hover .wrap p span:nth-child(1) { display: none; }
+.mouse-button:hover .wrap p span:nth-child(2) { display: inline-block; }
+
 .mouse-button .wrap p {
   display: flex;
   align-items: center;
   gap: 6px;
   margin: 0;
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
   transform: translateY(2%);
   mask-image: linear-gradient(to bottom, white 40%, transparent);
 }
+
 .mouse-button .wrap::before,
 .mouse-button .wrap::after {
   content: "";
-  position: relative; /* change to absolute to put shiny effect on the button again*/
+  position: relative;
   transition: all 0.3s ease;
 }
+
+/* Soft radial sheen across top */
 .mouse-button .wrap::before {
   left: -15%;
   right: -15%;
   bottom: 25%;
   top: -100%;
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.12);
+  background-color: rgba(194, 189, 201, 0.15); /* bluish tint */
 }
+
+/* Subtle top gloss reflection */
 .mouse-button .wrap::after {
   left: 6%;
   right: 6%;
   top: 12%;
   bottom: 40%;
   border-radius: 22px 22px 0 0;
-  box-shadow: inset 0 10px 8px -10px rgba(255, 255, 255, 0.8);
+  box-shadow: inset 0 10px 8px -10px rgba(194, 189, 201, 0.6);
   background: linear-gradient(
     180deg,
-    rgba(255, 255, 255, 0.3) 0%,
-    rgba(0, 0, 0, 0) 50%,
-    rgba(0, 0, 0, 0) 100%
+    rgba(194, 189, 201, 0.25) 0%,
+    rgba(12, 13, 19, 0) 50%,
+    rgba(12, 13, 19, 0) 100%
   );
 }
+
+/* Hover state: a little brighter, cooler, more reflective */
 .mouse-button:hover {
   box-shadow:
-    inset 0 0.3rem 0.5rem rgba(255, 255, 255, 0.4),
+    inset 0 0.3rem 0.5rem rgba(255, 255, 255, 0.25),
     inset 0 -0.1rem 0.3rem rgba(0, 0, 0, 0.7),
-    inset 0 -0.4rem 0.9rem rgba(255, 255, 255, 0.7),
+    inset 0 -0.4rem 0.9rem rgba(194, 189, 201, 0.6),
     0 3rem 3rem rgba(0, 0, 0, 0.3),
     0 1rem 1rem -0.6rem rgba(0, 0, 0, 0.8);
 }
+
 .mouse-button:hover .wrap::before {
   transform: translateY(-5%);
 }
+
 .mouse-button:hover .wrap::after {
-  opacity: 0.4;
+  opacity: 0.45;
   transform: translateY(5%);
 }
+
 .mouse-button:hover .wrap p {
   transform: translateY(-4%);
 }
+
+/* Pressed state: slightly deeper, still with soft blue shine */
 .mouse-button:active {
-  transform: translateY(4px);
+  transform: translateY(5px);
+  transform: translateX(-40px);
   box-shadow:
-    inset 0 0.3rem 0.5rem rgba(255, 255, 255, 0.5),
-    inset 0 -0.1rem 0.3rem rgba(0, 0, 0, 0.8),
-    inset 0 -0.4rem 0.9rem rgba(255, 255, 255, 0.4),
+    inset 0 0.3rem 0.5rem rgba(255, 255, 255, 0.3),
+    inset 0 -0.1rem 0.3rem rgba(0, 0, 0, 0.85),
+    inset 0 -0.4rem 0.9rem rgba(194, 189, 201, 0.35),
     0 3rem 3rem rgba(0, 0, 0, 0.3),
     0 1rem 1rem -0.6rem rgba(0, 0, 0, 0.8);
 }

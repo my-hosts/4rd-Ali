@@ -42,7 +42,7 @@ function changeGif(state) {
   // 🖼️ 2. Change GIF based on action
   switch (state) {
     case "eat":
-      gifEl.src = "eat_mouse.gif";
+      playGif("eat_mouse.gif");
       gifTimeouts.push(setTimeout(() => gifEl.src = "bigger_default.gif", 4000));
       break;
 
@@ -54,12 +54,12 @@ function changeGif(state) {
       break;
 
     case "work":
-      gifEl.src = "rat-work.gif";
-      gifTimeouts.push(setTimeout(() => gifEl.src = "bigger_default.gif", 3000));
+      playGif("work_mouse.gif");
+      gifTimeouts.push(setTimeout(() => gifEl.src = "bigger_default.gif", 8000));
       break;
 
     case "slay":
-      gifEl.src = "slay_mouse.gif";
+      playGif("slay_mouse.gif");
       gifTimeouts.push(setTimeout(() => gifEl.src = "bigger_default.gif", 8000));
       break;
 
@@ -152,14 +152,35 @@ window.krilataFrazaPopUp = krilataFrazaPopUp;
 function play_audio(){
   const audio = document.getElementById("bg-audio");
   audio.loop = true;
+  document.addEventListener('DOMContentLoaded', function() {
+        const toggleInput = document.getElementById('audioToggleInput');
+        
+        if (toggleInput) {
+            // Force the checkbox state to UNCHECKED immediately
+            toggleInput.checked = false;
+        }
+    });
+  window.addEventListener('pageshow', function(event) {
+        // 'pageshow' event runs even when navigating back from history
+        if (event.persisted) {
+            const toggleInput = document.getElementById('audioToggleInput');
+            if (toggleInput) {
+                toggleInput.checked = false;
+            }
+        }
+    });
   audio.play().then(() => {
     // Hide the button once audio starts
-    document.querySelector(".audio-button").style.display = "none";
     document.querySelector(".audio-overlay").style.display = "none";
     document.querySelector(".switch").style.display = "none";
-    document.querySelector(".button").style.display = "none";
+    document.querySelector(".toggle-lever").style.display = "none";
   }).catch(err => {
     console.log("Autoplay blocked until user interaction:", err);
   });
 
+
+}
+
+function toggle_switched(){
+  setTimeout(play_audio, 400)
 }

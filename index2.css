@@ -13,10 +13,15 @@ html, body {
   #0f380f 0%,
   #001f00 50%,
   #000000 100%);
-  background-image:
+  /*background-image:
   repeating-linear-gradient(transparent 0px, rgba(255,255,255,0.02) 1px),
   radial-gradient(circle at center, #0f380f 0%, #000 100%);
-background-size: auto, cover;
+background-size: auto, cover;*/
+  background-image: url("boo-bedroom.jpg");
+  background-size: cover;
+  overflow: visible;
+  transform-origin: left;
+  z-index: -30;
 
 }
 
@@ -40,24 +45,14 @@ background-size: auto, cover;
   position: absolute;
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(90deg,#000000, #0f9b0f);
-  z-index: 99;
+  /*background: linear-gradient(90deg,#000000, #0f9b0f);*/
+  background-image: url("gr-bg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: visible;
+  z-index: 999;
 }
 
-.audio-button{
-  position: fixed;          /* stays centered on screen */
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: clamp(60px, 10vw, 120px); /* responsive size */
-  height: clamp(60px, 10vw, 120px);
-  background-image: url("play_button.png");
-  background-repeat: no-repeat;
-  background-size: contain;  /* preserves proportions */
-  background-position: center;
-  z-index: 100;
-  cursor: pointer;
-}
 
 /* === Title === */
 h1 {
@@ -178,180 +173,143 @@ h1 {
 
 /* Ensure ALL buttons inside the container are positioned absolutely */
 .container button {
-    position: absolute; 
-    /* This centering transform is critical: it aligns the button's center 
-       to the specified top/left percentage point. */
-    transform: translate(-50%, -50%); 
+    position: absolute;
+    transform: translate(-50%, -50%);
     padding: 0;
 }
 
-.btn-feed { /* 🍽 - Left-middle */
-    top: 70%; 
-    left: 27%; 
-}
+/* Button positions */
+.btn-feed { top: 70%; left: 27%; }
+.btn-sleep { top: 83%; left: 39%; }
+.btn-work { top: 83%; left: 61%; }
+.btn-slay { top: 70%; left: 72%; }
 
-.btn-sleep { /* 𝗓 ᶻ - Bottom-left */
-    top: 83%; 
-    left: 39%;
-}
-
-.btn-work { /* 🖍work - Bottom-right */
-    top: 83%; 
-    left: 61%; 
-}
-
-.btn-slay { /* Slay - Right-middle */
-    top: 70%; 
-    left: 72%;
-}
-
-/* Optional: Adjust button size to scale with viewport for better responsiveness */
-/* You can modify the font size or padding of .button-inner */
-/* Maintain a consistent, scalable size for the button content */
-.button-inner {
-    /* Use a fixed, manageable unit for padding to control size */
-    padding: 1.5em; 
-
-    /* The button size is now consistent relative to the font size on the page. */
-    /* This makes them scale better with the overall 'game-stage' scaling. */
-}
-
+/* Base Button */
 button {
-      all: unset;
-      cursor: pointer;
-      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-      /*position: absolute;*/
-      /*transform: translate(-50%, -50%);*/
-      /*margin-top: 10px;
-      margin-left: 15px;
-      margin-right: 15px;*/
-      border-radius: 100em;
-      background-color: rgba(0, 0, 0, 0.75);
-      box-shadow: -0.15em -0.15em 0.15em -0.15em rgba(5, 5, 5, 0.25),
-          0.0375em 0.0375em 0.0375em 0 rgba(5, 5, 5, 0.1);
+    all: unset;
+    cursor: pointer;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    border-radius: 100em;
+    background-color: #c2bdc9; /* soft blue-grey base */
+    box-shadow:
+        -0.15em -0.15em 0.15em -0.15em rgba(20, 20, 30, 0.25),
+        0.0375em 0.0375em 0.0375em 0 rgba(20, 20, 30, 0.1);
+}
 
+button::after {
+    content: "";
+    position: relative;
+    z-index: 0;
+    width: calc(50% + 0.3em);
+    height: calc(50% + 0.3em);
+    top: -0.15em;
+    left: -0.15em;
+    border-radius: inherit;
+    background: linear-gradient(
+        -135deg,
+        rgba(100, 100, 130, 0.4),
+        transparent 20%,
+        transparent 100%
+    );
+    filter: blur(0.0125em);
+    opacity: 0.25;
+    mix-blend-mode: multiply;
+}
 
-    }
+.button:hover .button-outer {
+    box-shadow:
+        0 0 0 0 rgba(20, 20, 30, 1),
+        0 0 0 0 rgba(20, 20, 30, 0.5),
+        0 0 0 0 rgba(20, 20, 30, 0.25);
+}
 
-    button::after {
-        content: "";
-        position: relative;
-        z-index: 0;
-        width: calc(50% + 0.3em);
-        height: calc(50% + 0.3em);
-        top: -0.15em;
-        left: -0.15em;
-        border-radius: inherit;
-        background: linear-gradient(-135deg,
-                rgba(5, 5, 5, 0.5),
-                transparent 20%,
-                transparent 100%);
-        filter: blur(0.0125em);
-        opacity: 0.25;
-        mix-blend-mode: multiply;
-    }
-    .button:hover .button-outer {
-      box-shadow:
-        0 0 0 0 rgba(5, 5, 5, 1),
-        0 0 0 0 rgba(5, 5, 5, 0.5),
-        0 0 0 0 rgba(5, 5, 5, 0.25);
-    }
+button .button-outer {
+    position: relative;
+    z-index: 1;
+    border-radius: inherit;
+    transition: box-shadow 300ms ease;
+    will-change: box-shadow;
+    box-shadow:
+        0 0.05em 0.05em -0.01em rgba(30, 30, 50, 1),
+        0 0.01em 0.01em -0.01em rgba(30, 30, 50, 0.5),
+        0.15em 0.3em 0.1em -0.01em rgba(30, 30, 50, 0.25);
+}
 
-    button .button-outer {
-        position: relative;
-        z-index: 1;
-        border-radius: inherit;
-        transition: box-shadow 300ms ease;
-        will-change: box-shadow;
-        box-shadow: 0 0.05em 0.05em -0.01em rgba(5, 5, 5, 1),
-            0 0.01em 0.01em -0.01em rgba(5, 5, 5, 0.5),
-            0.15em 0.3em 0.1em -0.01em rgba(5, 5, 5, 0.25);
-    }
+.button-inner {
+    --inset: 0.035em;
+    position: relative;
+    z-index: 1;
+    border-radius: inherit;
+    padding: clamp(1em, 2.5vw, 2em);
+    font-size: clamp(0.8rem, 1.2vw, 1.5rem);
+    background-image: linear-gradient(135deg, #d6d4dc, #b5b0be);
+    /* gentle blue overtone */
+    background-color: #c2bdc9;
+    transition:
+        box-shadow 300ms ease,
+        clip-path 250ms ease,
+        background-image 250ms ease,
+        transform 250ms ease;
+    will-change: box-shadow, clip-path, background-image, transform;
+    overflow: visible;
+    clip-path: inset(0 0 0 0 round 999vw);
+    box-shadow:
+        0 0 0 0 inset rgba(40, 40, 50, 0.1),
+        -0.05em -0.05em 0.05em 0 inset rgba(50, 50, 60, 0.25),
+        0 0 0 0 inset rgba(60, 60, 80, 0.1),
+        0 0 0.05em 0.2em inset rgba(255, 255, 255, 0.25),
+        0.025em 0.05em 0.1em 0 inset rgba(255, 255, 255, 1),
+        0.12em 0.12em 0.12em inset rgba(255, 255, 255, 0.25),
+        -0.075em -0.25em 0.25em 0.1em inset rgba(20, 20, 30, 0.25);
+}
 
-    .button-inner {
-    
-        --inset: 0.035em;
-        position: relative;
-        z-index: 1;
-        border-radius: inherit;
-        padding: clamp(1em, 2.5vw, 2em);
+button:hover .button-inner {
+    clip-path: inset(
+        clamp(1px, 0.0625em, 2px)
+        clamp(1px, 0.0625em, 2px)
+        clamp(1px, 0.0625em, 2px)
+        clamp(1px, 0.0625em, 2px)
+        round 999vw
+    );
+    background-image: linear-gradient(135deg, #e4e3ea, #b8b4c3);
+    box-shadow:
+        0.1em 0.15em 0.05em 0 inset rgba(30, 30, 50, 0.6),
+        -0.025em -0.03em 0.05em 0.025em inset rgba(40, 40, 60, 0.4),
+        0.25em 0.25em 0.2em 0 inset rgba(20, 20, 30, 0.4),
+        0 0 0.05em 0.5em inset rgba(255, 255, 255, 0.15),
+        0 0 0 0 inset rgba(255, 255, 255, 1),
+        0.12em 0.12em 0.12em inset rgba(255, 255, 255, 0.25),
+        -0.075em -0.12em 0.2em 0.1em inset rgba(20, 20, 30, 0.25);
+}
 
-        font-size: clamp(0.8rem, 1.2vw, 1.5rem);
-        background-image: linear-gradient(135deg,
-                rgba(230, 230, 230, 1),
-                rgba(180, 180, 180, 1));
-        transition: box-shadow 300ms ease, clip-path 250ms ease,
-            background-image 250ms ease, transform 250ms ease;
-        will-change: box-shadow, clip-path, background-image, transform;
-        overflow: visibles;
-        clip-path: inset(0 0 0 0 round 999vw);
-        box-shadow:
-            /* 1 */
-            0 0 0 0 inset rgba(5, 5, 5, 0.1),
-            /* 2 */
-            -0.05em -0.05em 0.05em 0 inset rgba(5, 5, 5, 0.25),
-            /* 3 */
-            0 0 0 0 inset rgba(5, 5, 5, 0.1),
-            /* 4 */
-            0 0 0.05em 0.2em inset rgba(255, 255, 255, 0.25),
-            /* 5 */
-            0.025em 0.05em 0.1em 0 inset rgba(255, 255, 255, 1),
-            /* 6 */
-            0.12em 0.12em 0.12em inset rgba(255, 255, 255, 0.25),
-            /* 7 */
-            -0.075em -0.25em 0.25em 0.1em inset rgba(5, 5, 5, 0.25);
-    }
-    button:hover .button-inner {
-        clip-path: inset(clamp(1px, 0.0625em, 2px) clamp(1px, 0.0625em, 2px) clamp(1px, 0.0625em, 2px) clamp(1px, 0.0625em, 2px) round 999vw);
-        box-shadow:
-            /* 1 */
-            0.1em 0.15em 0.05em 0 inset rgba(5, 5, 5, 0.75),
-            /* 2 */
-            -0.025em -0.03em 0.05em 0.025em inset rgba(5, 5, 5, 0.5),
-            /* 3 */
-            0.25em 0.25em 0.2em 0 inset rgba(5, 5, 5, 0.5),
-            /* 4 */
-            0 0 0.05em 0.5em inset rgba(255, 255, 255, 0.15),
-            /* 5 */
-            0 0 0 0 inset rgba(255, 255, 255, 1),
-            /* 6 */
-            0.12em 0.12em 0.12em inset rgba(255, 255, 255, 0.25),
-            /* 7 */
-            -0.075em -0.12em 0.2em 0.1em inset rgba(5, 5, 5, 0.25);
-    }
-    button .button-inner span {
-      width: 2em;/*width: 30px;*/
-      height: 2em;
-      /*height: 30px;*/
- 
-        z-index: 4;
-        font-family: "Comic Sans MS", sans-serif;
-        letter-spacing: -0.05em;
-        font-weight: 500;
-        color: rgba(0, 0, 0, 0);
-        background-image: linear-gradient(135deg,
-                rgba(25, 25, 25, 1),
-                rgba(75, 75, 75, 1));
-        /*-webkit-background-clip: text;*/
-        background-clip: text;
-        transition: transform 250ms ease;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        will-change: transform;
-        text-shadow: rgba(0, 0, 0, 0.1) 0 0 0.1em;
-        -webkit-user-select: none; 
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-    }
-    button:hover .button-inner span {
-        transform: scale(0.975);
-    }
+button .button-inner span {
+    width: 2em;
+    height: 2em;
+    z-index: 4;
+    font-family: "Comic Sans MS", sans-serif;
+    letter-spacing: -0.05em;
+    font-weight: 500;
+    color: #52464f;
+    background-image: linear-gradient(135deg, #6e6c79, #a8a5b2);
+    filter: contrast(1.5);
+    background-clip: text;
+    -webkit-background-clip: text;
+    transition: transform 250ms ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    will-change: transform;
+    /*text-shadow: rgba(0, 0, 0, 0.1) 0 0 0.1em;*/
+    user-select: none;
+}
 
-    button:active .button-inner {
-        transform: scale(0.975);
-    }
+button:hover .button-inner span {
+    transform: scale(0.975);
+}
+
+button:active .button-inner {
+    transform: scale(0.975);
+}
 
 
 /* === Mobile Tweaks === */

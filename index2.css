@@ -114,8 +114,8 @@ h1 {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  width: clamp(120px, 30%, 360px); /* scales smoothly */
-  height: clamp(14px, 4.2%, 28px); /* scales with viewport height */
+  width: 30%;/*width: clamp(100px, 30%, 300px); /* scales smoothly */
+  height: 4.5%; /*height: clamp(14px, 2.5vw, 24px); /* scales with viewport height */
   
   background-color: #000;
   border: clamp(1px, 0.3vw, 2px) solid #909190; /* responsive border */
@@ -357,7 +357,8 @@ button {
 /* === Mobile Tweaks === */
 @media (max-width: 600px) {
   .game-stage {
-    scale: 0.9; /* Keep the uniform scaling of the whole stage */
+    /*scale: 0.9; /* Keep the uniform scaling of the whole stage */
+    /*aspect-ratio: 16/9;*/
   }
   .container {
     width: 100%; 

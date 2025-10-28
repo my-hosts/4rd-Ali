@@ -143,8 +143,22 @@ startDecreasingBars();
 function krilataFrazaPopUp(){
   //popup krilata fraza
   var popup = document.getElementById("myPopup");
-  popup.classList.toggle("show");
+  const text = ["Докато е жив, човек не трябва да умира!",
+    "Човек само когато си знае какво му е, само аз си знам какво ми е.",
+    "Човек като има рожден ден, само той си има рожден ден!",
+    "Или ще си посегна на живота, или ще сложа край на живота си.",
+    "Който нож вади, ще го използва..",
+    "Жените са като виното... с възрастта остаряват!", 
+    "Nothing beats a Jet2Holiday and right now you can save 50 pounds per person! That's two hundred pounds off for a family of four!", 
+    "По-добре Милка с лешници, отколкото лелка с мишници."]
+
   console.log("Popup function triggered");
+  let data = text[Math.floor(Math.random() * text.length)]; // random element
+  popup.setAttribute("data-content", data); // ✅ sets the content dynamically
+  popup.classList.toggle("show");
+  /*var div = document.getElementById('myPopup');
+  div.setAttribute(data)*/
+
 }
 
 window.krilataFrazaPopUp = krilataFrazaPopUp;

@@ -138,11 +138,14 @@ function startDecreasingBars() {
 updateBars();
 startDecreasingBars();
 
-
+let shuffledTexts = [];
+let currentIndex = 0;
+let callCount = 1;
 
 function krilataFrazaPopUp(){
   //popup krilata fraza
   var popup = document.getElementById("myPopup");
+
   const text = ["Докато е жив, човек не трябва да умира!",
     "Човек само когато си знае какво му е, само аз си знам какво ми е.",
     "Човек като има рожден ден, само той си има рожден ден!",
@@ -150,16 +153,28 @@ function krilataFrazaPopUp(){
     "Който нож вади, ще го използва..",
     "Жените са като виното... с възрастта остаряват!", 
     "Nothing beats a Jet2Holiday and right now you can save 50 pounds per person! That's two hundred pounds off for a family of four!", 
-    "По-добре Милка с лешници, отколкото лелка с мишници."]
+    "По-добре Милка с лешници, отколкото лелка с мишници."];
+  callCount++;
+  if (callCount % 2 === 0){
+    if (shuffledTexts.length === 0 || currentIndex >= shuffledTexts.length) {
+    shuffledTexts = [...text].sort(() => Math.random() - 0.5); // shuffle
+    currentIndex = 0;
+    }
+  }
+  else {
+    console.log("Skipped text update (waiting for next call)");
+  }  
 
   console.log("Popup function triggered");
-  let data = text[Math.floor(Math.random() * text.length)]; // random element
+  const data = shuffledTexts[currentIndex++];
+  //let data = text[Math.floor(Math.random() * text.length)]; // random element
   popup.setAttribute("data-content", data); // ✅ sets the content dynamically
   popup.classList.toggle("show");
   /*var div = document.getElementById('myPopup');
   div.setAttribute(data)*/
 
 }
+
 
 window.krilataFrazaPopUp = krilataFrazaPopUp;
 
@@ -196,5 +211,5 @@ function play_audio(){
 }
 
 function toggle_switched(){
-  setTimeout(play_audio, 400)
+  setTimeout(play_audio, 800)
 }
